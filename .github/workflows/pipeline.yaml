@@ -1,0 +1,26 @@
+name: Blue-Green Deployment
+
+on:
+  workflow_dispatch:  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1  
+
+    - name: Make Deployment Script Executable
+      run: chmod +x script.sh
+
+    - name: Run Blue-Green Deployment
+      run: ./script.sh
+
