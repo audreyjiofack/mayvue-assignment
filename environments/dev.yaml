@@ -1,0 +1,228 @@
+tags:
+  owner: "AudreyJ"
+  team: "DevOps"
+  environment: "dev"
+  project: "mayvue"
+  create_by: "Terraform"
+  cloud_provider: "aws"
+
+vpc:
+  aws_region: "us-east-1"
+  cidr_block: 10.0.0.0/16
+  availability_zones: ["us-east-1a"]
+  nat_gateway_count: 1
+  enable_dns_support: true
+  enable_dns_hostnames: true
+  vpc_id: "vpc-07794a21569d88d2a"
+  public_subnets: "subnet-08dd4c1495834210e"
+  private_subnets: "subnet-0a03a627d046a719a"
+
+  tags:
+    owner: "AudreyJ"
+    team: "DevOps"
+    environment: "dev"
+    project: "mayvue"
+    create_by: "Terraform"
+    cloud_provider: "aws"
+
+s3:
+  aws_region_main: "us-east-1"
+  aws_region_backup: "us-east-2"
+  force_destroy: false
+  tags: 
+    owner: "AudreyJ"
+    team: "DevOps"
+    environment: "dev"
+    project: "mayvue"
+    create_by: "Terraform"
+    cloud_provider: "aws"
+
+configs:
+  blue:
+    aws_region: "us-east-1"
+    ec2_instance_ami: "ami-07ee6c359b69aaced"
+    ec2_instance_type: "t3.micro"
+    create_on_public_subnet: false
+    instance_name: "blue-iis-web-instance"
+    vpc_id: "vpc-040d2cd0932c909d5"
+    private_subnets: [
+      "subnet-012eab6448ca839ab",
+      "subnet-07af5b63223a72fd9"
+    ]
+    security_group_id: "sg-088309fcbe3360c22"
+    public_subnet: "subnet-0b0bbddbfc5958c98"
+    iam_instance_profile: "ssm_profile"
+    root_volume_size: 30
+    enable_termination_protection: false
+    ec2_instance_key_name : "mayvue"
+    web_ports: [
+          80,
+          443
+        ]
+    allowed_ips:
+      ip_1: "98.85.216.142/32"
+      my_ip:  "98.80.250.111/32"
+    tags:
+      owner: "AudreyJ"
+      team: "DevOps"
+      environment: "dev"
+      project: "mayvue"
+      create_by: "Terraform"
+      cloud_provider: "aws"
+  green:
+    aws_region: "us-east-1"
+    ec2_instance_ami: "ami-07ee6c359b69aaced"
+    ec2_instance_type: "t3.micro"
+    create_on_public_subnet: false
+    instance_name: "green-iis-web-instance"
+    vpc_id: "vpc-040d2cd0932c909d5"
+    private_subnets: [
+      "subnet-012eab6448ca839ab",
+      "subnet-07af5b63223a72fd9"
+    ]
+    security_group_id: "sg-088309fcbe3360c22"
+    public_subnet: "subnet-0b0bbddbfc5958c98"
+    iam_instance_profile: "ssm_profile"
+    root_volume_size: 30
+    enable_termination_protection: false
+    ec2_instance_key_name : "mayvue"
+    web_ports: [
+          80,
+          443
+        ]
+    allowed_ips:
+      ip_1: "98.85.216.142/32"
+      my_ip:  "98.80.250.111/32"
+    tags:
+      owner: "AudreyJ"
+      team: "DevOps"
+      environment: "dev"
+      project: "mayvue"
+      create_by: "Terraform"
+      cloud_provider: "aws"
+
+
+parameter-store:
+  aws_region: "us-east-1"
+  tags:
+    owner: "AudreyJ"
+    team: "DevOps"
+    environment: "dev"
+    project: "mayvue"
+    create_by: "Terraform"
+    cloud_provider: "aws"
+  db_name: 
+    sqlDb: 
+      username: "admin"
+      password: "password-value-through-aws-console" 
+
+sec-grp:
+  aws_region: "us-east-1"
+  db_sg: "db_sg"
+  web_sg: "web_sg"
+  tags:
+    owner: "AudreyJ"
+    team: "DevOps"
+    environment: "dev"
+    project: "mayvue"
+    create_by: "Terraform"
+    cloud_provider: "aws"
+  db_port: 1433
+  web_ports:
+    http: 80
+    https: 443
+  db_allowed_cidr_blocks: 
+   - "10.0.0.0/24"
+   - "192.168.1.0/24"
+  db_subnet_ids : [
+    "subnet-012eab6448ca839ab",
+    "subnet-07af5b63223a72fd9"
+  ]
+  allowed_ips: 
+    - "203.0.113.0/24"
+
+
+db:
+  aws_region            : "us-east-1"
+  identifier : "sqlserver-instance"
+  engine : "sqlserver-se"
+  engine_version : "15.00.4073.23.v1"
+  instance_class : "db.t3.micro"
+  allocated_storage : 50
+  storage_type         : "gp2"
+  db_name : "sql-database"
+  username : "admin"
+  multi_az : false
+  storage_encrypted : true
+  db_port : 1433
+  # ad_domain_id : "mydomain.com"
+  # ad_iam_role_name : "my-iam-role"
+  db_subnet_group_name : "rds-subnet-group"
+  vpc_security_group_ids : ["sg-0b56b1efe5035a28e"]
+  maintenance_window : "Mon:03:00-Mon:04:00"
+  backup_window : "02:00-03:00"
+  # enabled_cloudwatch_logs_exports : ["error", "general"]
+  backup_retention_period : 7
+  skip_final_snapshot : true
+  deletion_protection : false
+  performance_insights_enabled : true
+  performance_insights_retention_period : 7
+  # monitoring_interval : 60
+  license_model : "license-included"
+  timezone : "UTC"
+  character_set_name : "SQL_Latin1_General_CP1_CI_AS"
+  tags : 
+    owner: "AudreyJ"
+    team: "DevOps"
+    environment: "dev"
+    project: "BlueGreenDotNetApp"
+    create_by: "Terraform"
+    cloud_provider: "aws"
+
+  db_subnet_ids : [
+    "subnet-012eab6448ca839ab",
+    "subnet-00d5c9ed665011395"
+  ]
+  vpc_id : "vpc-040d2cd0932c909d5"
+
+  
+
+
+# db: 
+#   aws_region: "us-east-1"
+#   name: "sqlserver"
+#   db_sg: "db-sg"
+#   db_port: 1433
+#   db_allowed_cidr_blocks:   ["10.0.0.0/24", "192.168.1.0/24"]
+#   db_instance_class: "db.m5.large" 
+#   db_storage_size: 20
+#   db_storage_type: "gp3"
+#   multi_az: false
+#   publicly_accessible: false
+#   backup_retention_period: 7
+#   backup_window: "10:30-11:00"
+#   maintenance_window: "Tue:04:49-Tue:05:19"
+#   auto_minor_version_upgrade: true
+#   deletion_protection: false
+#   skip_final_snapshot: false
+#   storage_encrypted: true
+#   rds_sg_id: "sg-0761f1e96fe30cdf2" 
+#   rds_subnet_ids: [
+#     subnet-0a03a627d046a719a,
+#     subnet-0446a3c539d517c4b,
+#     subnet-0a2bd17212f7a7cfd 
+#   ]
+#   rds_subnet_group_name: "rds-subnet-group"
+#   rds_parameter_group_name: "custom-mariadb-11-4"
+#   family: "mariadb11.4"
+#   rds_identifier: "backend"
+#   rds_engine: "mariadb"
+#   engine_version: "11.4.4"
+#   vpc_id: "vpc-07794a21569d88d2a"
+#   tags:
+#     owner: "AudreyJ"
+#     team: "DevOps"
+#     environment: "dev"
+#     project: "mayvue"
+#     create_by: "Terraform"
+#     cloud_provider: "aws"

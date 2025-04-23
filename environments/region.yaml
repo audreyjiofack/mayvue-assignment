@@ -1,0 +1,8 @@
+region:
+  dev: us-east-1
+  prod: us-east-1
+  management: us-east-1
+  alias:
+    aws_region_main: us-east-1
+    aws_region_backup: us-west-2
+

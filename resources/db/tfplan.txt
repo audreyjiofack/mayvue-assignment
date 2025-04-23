@@ -1,0 +1,66 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # module.db.aws_db_instance.sqlserver is tainted, so must be replaced
+-/+ resource "aws_db_instance" "sqlserver" {
+      ~ address                               = "sqlserver-instance.cobu8kg08rmj.us-east-1.rds.amazonaws.com" -> (known after apply)
+      ~ allocated_storage                     = 100 -> 50
+      ~ arn                                   = "arn:aws:rds:us-east-1:820242925153:db:sqlserver-instance" -> (known after apply)
+      ~ availability_zone                     = "us-east-1b" -> (known after apply)
+      ~ backup_target                         = "region" -> (known after apply)
+      ~ ca_cert_identifier                    = "rds-ca-rsa2048-g1" -> (known after apply)
+      - customer_owned_ip_enabled             = false -> null
+      ~ database_insights_mode                = "standard" -> (known after apply)
+      + db_name                               = (known after apply)
+      ~ deletion_protection                   = true -> false
+      - domain_dns_ips                        = [] -> null
+      + domain_fqdn                           = (known after apply)
+      + domain_iam_role_name                  = "rds-sql-ad-role"
+      - enabled_cloudwatch_logs_exports       = [] -> null
+      ~ endpoint                              = "sqlserver-instance.cobu8kg08rmj.us-east-1.rds.amazonaws.com:1433" -> (known after apply)
+      + engine_lifecycle_support              = (known after apply)
+      ~ engine_version_actual                 = "15.00.4073.23.v1" -> (known after apply)
+      ~ hosted_zone_id                        = "Z2R2ITUGPM61AM" -> (known after apply)
+      - iam_database_authentication_enabled   = false -> null
+      ~ id                                    = "db-QX5FZYXURPCCWPNFDWXB5HIHO4" -> (known after apply)
+      ~ identifier                            = "sqlserver-instance" -> "sqlserver-instance2"
+      + identifier_prefix                     = (known after apply)
+      ~ instance_class                        = "db.m5.large" -> "db.t3.micro"
+      ~ iops                                  = 0 -> (known after apply)
+      ~ kms_key_id                            = "arn:aws:kms:us-east-1:820242925153:key/db6a1512-26ed-4dbb-8c47-2db151661a0e" -> (known after apply)
+      ~ latest_restorable_time                = "2025-04-23T09:55:01Z" -> (known after apply)
+      ~ listener_endpoint                     = [] -> (known after apply)
+      ~ master_user_secret                    = [] -> (known after apply)
+      + master_user_secret_kms_key_id         = (known after apply)
+      - max_allocated_storage                 = 0 -> null
+      + monitoring_role_arn                   = (known after apply)
+      + nchar_character_set_name              = (known after apply)
+      ~ network_type                          = "IPV4" -> (known after apply)
+      ~ option_group_name                     = "default:sqlserver-se-15-00" -> (known after apply)
+      ~ parameter_group_name                  = "default.sqlserver-se-15.0" -> (known after apply)
+      ~ performance_insights_kms_key_id       = "arn:aws:kms:us-east-1:820242925153:key/db6a1512-26ed-4dbb-8c47-2db151661a0e" -> (known after apply)
+      + replica_mode                          = (known after apply)
+      ~ replicas                              = [] -> (known after apply)
+      ~ resource_id                           = "db-QX5FZYXURPCCWPNFDWXB5HIHO4" -> (known after apply)
+      ~ skip_final_snapshot                   = false -> true
+      + snapshot_identifier                   = (known after apply)
+      ~ status                                = "available" -> (known after apply)
+      ~ storage_throughput                    = 0 -> (known after apply)
+      ~ storage_type                          = "gp2" -> (known after apply)
+        tags                                  = {
+            "Name"           = "dev-BlueGreenDotNetApp-sql-database"
+            "cloud_provider" = "aws"
+            "create_by"      = "Terraform"
+            "environment"    = "dev"
+            "owner"          = "AudreyJ"
+            "project"        = "BlueGreenDotNetApp"
+            "team"           = "DevOps"
+        }
+        # (30 unchanged attributes hidden)
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
